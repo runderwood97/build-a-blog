@@ -4,11 +4,13 @@
 <h1>Add a Blog Entry</h1>
 
 <form action = "" methond = "POST">
-    <p><label>Title for your new blog</label>
-    <input type = "text" name = "postTitle" value = "" /></p>
-    <p><label>Your new blog</label>
-    <textarea rows = "10" cols = "50" name = "newBlog"></textarea></p>
-    <p><input type = "submit" name = "submit" value = "Submit" /></p>
+    <p><label>Title for your new blog</label><br>
+    <input type = "text" name = "postTitle" value = "" /><br>
+    { titleError }</p>
+    <p><label>Your new blog</label><br>
+    <textarea rows = "10" cols = "50" name = "newBlog"></textarea><br>
+    { blogError }</p>
+    <p><input type = "submit" name = "submit" value = "Add Entry" /></p>
 </form>
 
-{% endblock %}
+{% endblock %} 
