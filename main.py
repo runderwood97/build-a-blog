@@ -19,4 +19,14 @@ class Blog(db.Model):
         self.title = title
         self.blog = blog
 
+@app.route("/", methods = ['post'])
+def validatePost():
+    blogTitle = request.form["postTitle"]
+    blogText = request.form["newBlog"]
+
+@app.route("/")
+def index():
+    return render_template("newPost.html")
+
+app.run()
 
