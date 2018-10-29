@@ -28,14 +28,14 @@ def validatePost():
     errorPost = ""
 
     if postTitle != "" and newBlog != "":
-        newTitleEscaped = cgi.escape(blogTitle, quote = True)
+        newTitleEscaped = cgi.escape(postTitle, quote = True)
         newTitle = Blog(newTitleEscaped)
 
-        newBlogEscaped = cgi.escape(blogText, quote = True)
+        newBlogEscaped = cgi.escape(newBlog, quote = True)
         newPost = Blog(newBlogEscaped)
 
         db.session.add(newTitle)
-        db.session.add(newBlog)
+        db.session.add(newPost)
         db.session.commit()
 
     else:
@@ -45,6 +45,9 @@ def validatePost():
         if blogText = "":
             errorPost = "Please fill in the body."
             errorCount = errorCount + 1
+
+    if errorCount > 0:
+        return render_template('newPost.html', titleError = errorTitle, blogError = errorPost)
 
 @app.route("/")
 def index():
