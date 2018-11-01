@@ -3,10 +3,10 @@
 
 <h1>Build a Blog</h1>
 
-{% for post in Blog: %}
+{% for post in titleList: %}
     <div id = "userPost">
         <h2>{ post.title }</h2>
-        <p>{ post.blog }</p>
+        <p>{ post.text }</p>
     </div>
 {% endfor %}
 

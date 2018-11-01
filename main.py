@@ -61,7 +61,7 @@ def validatePost():
     if errorCount > 0:
         return render_template('newPost.html', titleError = errorTitle, blogError = errorPost)
     else:
-        return render_template('blog.html', title = newTitle, text = newPost)
+        return render_template('blog.html', titleList = newTitle, textList = newPost)
 
 @app.route("/")
 def index():
