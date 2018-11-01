@@ -61,6 +61,9 @@ def validatePost():
     if errorCount > 0:
         return render_template('newPost.html', titleError = errorTitle, blogError = errorPost)
     else:
+        # MAKE THIS EDIT 
+        # query everything together not individually use Blog.query.all()
+        # instead of [title for title in Blog.query.all()] and [text for text in Blog.query.all()]
         return render_template('blog.html', titleList = newTitle, textList = newPost)
 
 @app.route("/")
