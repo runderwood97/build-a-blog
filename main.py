@@ -19,13 +19,8 @@ class Blog(db.Model):
         self.title = title
         self.text = text
 
-def getBlogTitles():
-    # gathers all blog titles
-    return [title for title in Blog.query.all()]
-
-def getBlogText():
-    # gathers all blog texts
-    return [text for text in Blog.query.all()]
+def blogList():
+    return Blog.query.all()
 
 @app.route("/", methods = ['post'])
 def validatePost():
@@ -61,10 +56,8 @@ def validatePost():
     if errorCount > 0:
         return render_template('newPost.html', titleError = errorTitle, blogError = errorPost)
     else:
-        # MAKE THIS EDIT 
-        # query everything together not individually use Blog.query.all()
-        # instead of [title for title in Blog.query.all()] and [text for text in Blog.query.all()]
-        return render_template('blog.html', titleList = newTitle, textList = newPost)
+        # loads blog.html and passes in all blogs
+        return render_template('blog.html', blogList = blogList)
 
 @app.route("/")
 def index():
