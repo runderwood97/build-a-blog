@@ -19,6 +19,9 @@ class Blog(db.Model):
         self.title = title
         self.text = text
 
+errorTitle = ""
+errorPost = ""
+
 def blogList():
     return Blog.query.all()
 
@@ -27,8 +30,6 @@ def validatePost():
     postTitle = request.form["postTitle"]
     newBlog = request.form["newBlog"]
     errorCount = 0
-    errorTitle = ""
-    errorPost = ""
 
     # check to see if the blog title or post are empty
     # if not empty add to database
@@ -62,7 +63,7 @@ def validatePost():
 @app.route("/")
 def index():
     # load up newPost.html 
-    return render_template("newPost.html", errorTitle = titleError, errorPost = blogError)
+    return render_template("newPost.html", errorTitle = errorTitle, errorPost = errorPost)
 
 app.run()
 
