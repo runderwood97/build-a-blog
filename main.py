@@ -61,7 +61,7 @@ def validatePost():
 
 @app.route("/")
 def index():
-    # load up newPost.html 
+    # load up base.html 
     return render_template("base.html")
 
 app.run()
