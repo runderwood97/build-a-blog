@@ -41,9 +41,9 @@ def validatePost():
         newBlogEscaped = cgi.escape(newBlog, quote = True)
         newPost = Blog(newBlogEscaped)
 
-        db.session.add(newTitle)
-        db.session.add(newPost)
-        db.session.commit()
+        BlogSite.session.add(newTitle)
+        BlogSite.session.add(newPost)
+        BlogSite.session.commit()
     else:
         if blogTitle == "":
             errorTitle = "Please fill in the title."
