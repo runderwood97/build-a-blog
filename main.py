@@ -8,12 +8,12 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://runderwood:iscmgoe8@localhost:3306/BlogSite'
 app.config['SQLALCHEMY_ECHO'] = True
 
-BlogSite = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
-class Blog(BlogSite.Model):
-    id = BlogSite.Column(BlogSite.Integer, primary_key=True)
-    title = BlogSite.Column(BlogSite.String(40))
-    text = BlogSite.Column(BlogSite.String(100))
+class Blog(db.Model):
+    id = BlogSite.Column(db.Integer, primary_key=True)
+    title = BlogSite.Column(db.String(40))
+    text = BlogSite.Column(db.String(100))
 
     def __init__(self, title, text):
         self.title = title
@@ -41,9 +41,9 @@ def validatePost():
         newBlogEscaped = cgi.escape(newBlog, quote = True)
         newPost = Blog(newBlogEscaped)
 
-        BlogSite.session.add(newTitle)
-        BlogSite.session.add(newPost)
-        BlogSite.session.commit()
+        db.session.add(newTitle)
+        db.session.add(newPost)
+        db.session.commit()
     else:
         if blogTitle == "":
             errorTitle = "Please fill in the title."
@@ -65,5 +65,6 @@ def index():
     # load up newPost.html 
     return render_template('newPost.html', errorTitle = errorTitle, errorPost = errorPost)
 
-app.run()
+if __name__ == "__main__":
+    app.run()
 
