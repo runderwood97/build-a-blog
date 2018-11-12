@@ -36,13 +36,11 @@ def validatePost():
     # if they are empty increment errorCount and create error discription
     if postTitle != "" and newBlog != "":
         newTitleEscaped = cgi.escape(postTitle, quote = True)
-        newTitle = Blog(newTitleEscaped)
-
         newBlogEscaped = cgi.escape(newBlog, quote = True)
-        newPost = Blog(newBlogEscaped)
+        
+        new_Blog = Blog(newTitleEscaped, newBlogEscaped)
 
-        db.session.add(newTitle)
-        db.session.add(newPost)
+        db.session.add(new_Blog)
         db.session.commit()
     else:
         if blogTitle == "":
