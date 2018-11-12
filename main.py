@@ -5,7 +5,7 @@ import cgi
 app = Flask(__name__)
 app.config['DEBUG'] = True 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://runderwood:iscmgoe8@localhost:3306/BlogSite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:iscmgoe8@localhost:3306/BlogSite'
 app.config['SQLALCHEMY_ECHO'] = True
 
 db = SQLAlchemy(app)
@@ -23,7 +23,7 @@ errorTitle = ""
 errorPost = ""
 
 def blogList():
-    return Blog.query.all()
+    return [blog for blog in Blog.query.all()]
 
 @app.route("/", methods = ['post'])
 def validatePost():
@@ -58,7 +58,7 @@ def validatePost():
         return render_template('newPost.html', titleError = errorTitle, blogError = errorPost)
     else:
         # loads blog.html and passes in all blogs
-        return render_template('blog.html', blogList = blogList)
+        return render_template('blog.html', blogList = blogList())
 
 @app.route("/")
 def index():
