@@ -11,9 +11,9 @@ app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
 class Blog(db.Model):
-    id = BlogSite.Column(db.Integer, primary_key=True)
-    title = BlogSite.Column(db.String(40))
-    text = BlogSite.Column(db.String(100))
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(40))
+    text = db.Column(db.String(100))
 
     def __init__(self, title, text):
         self.title = title
