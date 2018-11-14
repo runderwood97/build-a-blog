@@ -5,7 +5,7 @@ import cgi
 app = Flask(__name__)
 app.config['DEBUG'] = True 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://runderwood:iscmgoe8@localhost:3306/BlogSite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:iscmgoe8@localhost:3306/BlogSite'
 app.config['SQLALCHEMY_ECHO'] = True
 
 db = SQLAlchemy(app)
