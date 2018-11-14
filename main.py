@@ -23,9 +23,9 @@ errorTitle = ""
 errorPost = ""
 
 def blogList():
-    return Blog.query.all()
+    return [blog for blog in Blog.query.all()]
 
-@app.route("/", methods = ['post'])
+@app.route("/", methods = ['POST'])
 def validatePost():
     postTitle = request.form["postTitle"]
     newBlog = request.form["newBlog"]
