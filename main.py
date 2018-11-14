@@ -5,7 +5,7 @@ import cgi
 app = Flask(__name__)
 app.config['DEBUG'] = True 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:iscmgoe8@localhost:3306/BlogSite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://runderwood:iscmgoe8@localhost:3306/BlogSite'
 app.config['SQLALCHEMY_ECHO'] = True
 
 db = SQLAlchemy(app)
@@ -23,9 +23,9 @@ errorTitle = ""
 errorPost = ""
 
 def blogList():
-    return [blog for blog in Blog.query.all()]
+    return Blog.query.all()
 
-@app.route("/", methods = ['POST'])
+@app.route("/", methods = ['post'])
 def validatePost():
     postTitle = request.form["postTitle"]
     newBlog = request.form["newBlog"]
@@ -38,27 +38,25 @@ def validatePost():
         newTitleEscaped = cgi.escape(postTitle, quote = True)
         newBlogEscaped = cgi.escape(newBlog, quote = True)
         
-        new_Blog = Blog(newTitleEscaped, newBlogEscaped)
+        newPost = Blog(newTitleEscaped, newBlogEscaped)
 
-        db.session.add(new_Blog)
+        db.session.add(newPost)
         db.session.commit()
-        
     else:
-        print("hello")
-        if postTitle == "":
+        if blogTitle == "":
             errorTitle = "Please fill in the title."
             errorCount = errorCount + 1
-        if newBlog == "":
+        if blogText == "":
             errorPost = "Please fill in the body."
             errorCount = errorCount + 1
 
     # if an error was created return user to newPost.html with errors listed
     # if no errors created send user user to blog.html with all posts
     if errorCount > 0:
-        return render_template("newPost.html", errorTitle = errorTitle, errorPost = errorPost)
+        return render_template('newPost.html', titleError = errorTitle, blogError = errorPost)
     else:
         # loads blog.html and passes in all blogs
-        return render_template("blog.html", blogList = blogList())
+        return render_template('blog.html', blogList = blogList)
 
 @app.route("/")
 def index():
@@ -67,4 +65,3 @@ def index():
 
 if __name__ == "__main__":
     app.run()
-
