@@ -56,7 +56,7 @@ def validatePost():
         return render_template('newPost.html', errorTitle = errorTitle, errorPost = errorPost)
     else:
         # loads blog.html and passes in all blogs
-        return render_template('blog.html', blogList = blogList)
+        return render_template('blog.html', blogList = blogList())
 
 @app.route("/")
 def index():
