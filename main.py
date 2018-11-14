@@ -43,10 +43,10 @@ def validatePost():
         db.session.add(newPost)
         db.session.commit()
     else:
-        if blogTitle == "":
+        if postTitle == "":
             errorTitle = "Please fill in the title."
             errorCount = errorCount + 1
-        if blogText == "":
+        if newBlog == "":
             errorPost = "Please fill in the body."
             errorCount = errorCount + 1
 
