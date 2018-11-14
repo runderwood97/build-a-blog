@@ -53,7 +53,7 @@ def validatePost():
     # if an error was created return user to newPost.html with errors listed
     # if no errors created send user user to blog.html with all posts
     if errorCount > 0:
-        return render_template('newPost.html', titleError = errorTitle, blogError = errorPost)
+        return render_template('newPost.html', errorTitle = errorTitle, errorPost = errorPost)
     else:
         # loads blog.html and passes in all blogs
         return render_template('blog.html', blogList = blogList)
