@@ -25,6 +25,10 @@ errorPost = ""
 def blogList():
     return [blog for blog in Blog.query.all()]
 
+@app.route("/blog", methods = ['GET'])
+def displaySelectedPost():
+    return render_template("blog.html")
+
 @app.route("/", methods = ['POST'])
 def validatePost():
     postTitle = request.form["postTitle"]
